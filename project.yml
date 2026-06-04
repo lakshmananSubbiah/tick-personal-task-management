@@ -1,0 +1,63 @@
+name: Tick
+
+options:
+  bundleIdPrefix: com.lakshmanansp
+  deploymentTarget:
+    macOS: "15.0"
+  createIntermediateGroups: true
+  generateEmptyDirectories: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    SWIFT_STRICT_CONCURRENCY: minimal
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    DEVELOPMENT_LANGUAGE: en
+    ENABLE_HARDENED_RUNTIME: true
+    CODE_SIGN_STYLE: Automatic
+
+targets:
+  Tick:
+    type: application
+    platform: macOS
+    deploymentTarget: "15.0"
+    sources:
+      - path: Tick
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.lakshmanansp.tick
+        PRODUCT_NAME: Tick
+        INFOPLIST_FILE: Tick/Resources/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Tick/Resources/Tick.entitlements
+        ENABLE_PREVIEWS: true
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        COMBINE_HIDPI_IMAGES: true
+        LD_RUNPATH_SEARCH_PATHS:
+          - "$(inherited)"
+          - "@executable_path/../Frameworks"
+
+  TickTests:
+    type: bundle.unit-test
+    platform: macOS
+    deploymentTarget: "15.0"
+    sources:
+      - path: Tests/TickTests
+    dependencies:
+      - target: Tick
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.lakshmanansp.tick.tests
+
+schemes:
+  Tick:
+    build:
+      targets:
+        Tick: all
+        TickTests: [test]
+    run:
+      config: Debug
+    test:
+      targets:
+        - TickTests

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- App Sandbox: ON from day 1. Keeps Mac App Store distribution viable. -->
+	<key>com.apple.security.app-sandbox</key>
+	<true/>
+	<!-- Local notifications need no special entitlement inside the sandbox. -->
+	<!-- V2 CloudKit sync will add: com.apple.developer.icloud-container-identifiers,
+	     com.apple.developer.icloud-services (CloudKit), and aps-environment. -->
+</dict>
+</plist>
